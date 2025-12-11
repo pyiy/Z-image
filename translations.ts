@@ -1,5 +1,4 @@
 
-
 export type Language = 'en' | 'zh';
 
 export const translations = {
@@ -64,6 +63,9 @@ export const translations = {
     hdDisabled: "Enable High Definition",
     advancedSettings: "Advanced Settings",
     steps: "Steps",
+    guidanceScale: "Guidance Scale",
+    autoTranslate: "Auto Translate",
+    translating: "Translating...",
 
     // Tabs
     tab_general: "General",
@@ -86,6 +88,7 @@ export const translations = {
     error_invalid_response: "Invalid response from the server.",
     error_prompt_optimization_failed: "Failed to optimize prompt. Please try again.",
     error_upscale_failed: "Failed to upscale image.",
+    error_translation_failed: "Translation failed. Proceeding with original prompt.",
 
     // FAQ
     faq_q1: "Is this service free to use?",
@@ -104,6 +107,10 @@ export const translations = {
     faq_a4_ms_post: ".",
     faq_q5: "Can I host this myself?",
     faq_a5: "Yes! This is an open-source project licensed under MIT. You can fork the repository from GitHub and deploy it to Vercel, Cloudflare Pages, or any static hosting service.",
+    faq_q6: "How does Auto Translate work?",
+    faq_a6: "Some advanced models (like FLUX series) understand English best. When these models are selected, 'Auto Translate' is enabled by default. We detect if your prompt is not in English and automatically translate it using a fast LLM before generating the image to ensure the highest quality output.",
+    faq_q7: "How does Prompt Optimization work?",
+    faq_a7: "We use powerful LLMs to expand your short ideas into detailed, artistically rich prompts. Depending on the provider, we use models like DeepSeek or OpenAI. You can customize the 'Role Setting' in the Settings menu to control how the AI rewrites your prompts.",
     footer_license: "Released under the MIT License. Open source and free forever.",
 
     // Aspect Ratios
@@ -176,6 +183,9 @@ export const translations = {
     hdDisabled: "启用高清模式",
     advancedSettings: "高级参数",
     steps: "步数",
+    guidanceScale: "提示词权重",
+    autoTranslate: "自动翻译",
+    translating: "翻译中...",
     
     // Tabs
     tab_general: "通用",
@@ -198,6 +208,7 @@ export const translations = {
     error_invalid_response: "服务器返回了无效的响应。",
     error_prompt_optimization_failed: "优化提示词失败，请重试。",
     error_upscale_failed: "图片放大失败。",
+    error_translation_failed: "翻译失败，将使用原始提示词继续。",
 
     // FAQ
     faq_q1: "这个服务是免费的吗？",
@@ -216,6 +227,10 @@ export const translations = {
     faq_a4_ms_post: "提供。",
     faq_q5: "我可以私有部署吗？",
     faq_a5: "可以！这是一个基于 MIT 协议的开源项目。您可以从 GitHub Fork 代码库，并将其自由部署到 Vercel、Cloudflare Pages 或任何静态托管平台。",
+    faq_q6: "自动翻译是如何工作的？",
+    faq_a6: "某些高级模型（如 FLUX 系列）对英文提示词的理解能力最佳。当选择这些模型时，“自动翻译”功能会默认开启。我们会检测您的提示词是否为非英文，并使用快速 LLM 自动将其翻译为英文，以确保生成最高质量的图片。",
+    faq_q7: "提示词优化是如何工作的？",
+    faq_a7: "我们使用强大的 LLM 将您简短的想法扩展为详细、富有艺术感的提示词。根据服务商的不同，我们会调用 DeepSeek 或 OpenAI 等模型。您可以在“设置”菜单的“提示词”选项卡中自定义“角色设定”，以控制 AI 重写提示词的方式。",
     footer_license: "基于 MIT 协议发布。永久开源免费。",
 
     // Aspect Ratios

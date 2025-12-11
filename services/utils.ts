@@ -1,5 +1,4 @@
 
-
 export function generateUUID(): string {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
     const r = Math.random() * 16 | 0;
@@ -41,7 +40,7 @@ export const saveSystemPromptContent = (content: string) => {
 
 export const DEFAULT_OPTIMIZATION_MODELS: Record<string, string> = {
   huggingface: 'openai-fast',
-  gitee: 'Qwen3-235B-A22B-Instruct-2507',
+  gitee: 'DeepSeek-V3.2',
   modelscope: 'deepseek-ai/DeepSeek-V3.2'
 };
 
@@ -62,4 +61,48 @@ export const saveOptimizationModel = (provider: string, model: string) => {
           localStorage.setItem(OPTIM_MODEL_STORAGE_PREFIX + provider, model.trim());
       }
   }
+};
+
+// --- Translation Service ---
+
+const POLLINATIONS_API_URL = "https://text.pollinations.ai/openai";
+
+export const translatePrompt = async (text: string): Promise<string> => {
+    try {
+        const response = await fetch(POLLINATIONS_API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                model: 'openai-fast',
+                messages: [
+                    {
+                        role: 'system',
+                        content: `You are a professional language translation engine.
+Your sole responsibility is to translate user-provided text into English. Before processing any input, you must first identify its original language.
+If the input text is already in English, return the original English text directly without any modification. If the input text is not in English, translate it precisely into English.
+Your output must strictly adhere to the following requirements: it must contain only the final English translation or the original English text, without any explanations, comments, descriptions, prefixes, suffixes, quotation marks, or other non-translated content.`
+                    },
+                    {
+                        role: 'user',
+                        content: text
+                    }
+                ],
+                stream: false
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error("Translation request failed");
+        }
+
+        const data = await response.json();
+        const content = data.choices?.[0]?.message?.content;
+
+        return content || text;
+    } catch (error) {
+        console.error("Translation Error:", error);
+        throw new Error("error_translation_failed");
+    }
 };
